@@ -8,7 +8,7 @@ body {
 h1 {
     font-size: 3em;
     letter-spacing: .6em;
-    padding-top: 1em;
+    padding-top: -1em;
     padding-bottom: 1em;
 }
 
@@ -22,6 +22,11 @@ main {
     display: grid;
     grid-template-columns: 40% 60%;
     margin-top: 3em;
+}
+
+sub {
+    display: grid;
+    grid-template-columns: 40% 60%;
 }
 
 header {
@@ -41,6 +46,16 @@ p {
     margin: .5em auto
 }
 
+p {
+    text-align: justify;
+}
+
+.justify:not(:last-child):after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+}
+
 hr {
     border: none;
     background-color: lightgray;
@@ -56,7 +71,49 @@ h1, h2 {
     border-right: 1px solid lightgray;
 }
 
+#subRight {
+    text-align:center;
+}
+
 .education-split {
     background-color: lightgrey;
     width: 20%;
+}
+
+.dotFilled {
+    height: 10px;
+    width: 10px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50%;
+    display: inline-block;
+    margin: .5em auto
+}
+
+.dotEmpty {
+    height: 8px;
+    width: 8px;
+    border: .10em solid black;
+    border-radius: 50%;
+    display: inline-block;
+    margin: .5em auto
+}
+
+#subParagraph {
+    font-size: 1.1em;
+}
+
+img {
+    border: 5px solid black;
+    width: 19em;
+    height: 20em;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a:link, a:visited {
+    color: blue;
 }
