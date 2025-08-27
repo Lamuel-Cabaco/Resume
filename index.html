@@ -1,355 +1,620 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<link href="style.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lamuel - Software Engineer & Data Specialist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-	<title>Lamuel Resume</title>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 0.95em;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+        }
+
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 30px 25px;
+            border-right: 1px solid #e9ecef;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: #764ba2;
+        }
+
+        .skills-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .skill-category {
+            margin-bottom: 20px;
+        }
+
+        .skill-category h4 {
+            color: #495057;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .experience-item:last-child, .education-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .job-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .company {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .date-location {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .achievements {
+            list-style: none;
+        }
+
+        .achievements li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        .achievements li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .contact-details {
+            font-size: 0.95em;
+        }
+
+        .contact-details p {
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        .certifications {
+            list-style: none;
+        }
+
+        .certifications li {
+            background: #e3f2fd;
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+        }
+
+        .project-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .project-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .tech-stack {
+            font-size: 0.85em;
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .sidebar, .content {
+                padding: 30px 20px;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                margin: 0;
+                padding: 0;
+                font-size: 12px;
+                line-height: 1.4;
+            }
+            
+            .container {
+                box-shadow: none;
+                margin: 0;
+                max-width: none;
+                border-radius: 0;
+            }
+            
+            .header {
+                padding: 20px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                page-break-after: avoid;
+            }
+            
+            .name {
+                font-size: 1.8em;
+                margin-bottom: 5px;
+            }
+            
+            .title {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+            }
+            
+            .contact-info {
+                gap: 20px;
+                font-size: 0.85em;
+            }
+            
+            .main-content {
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            .sidebar {
+                padding: 20px 15px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .section {
+                margin-bottom: 20px;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            .section-title {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+                page-break-after: avoid;
+            }
+            
+            .experience-item, .education-item {
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            .project-item {
+                margin-bottom: 12px;
+                padding: 10px;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            .skills-grid .skill-category {
+                margin-bottom: 15px;
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+            
+            .skill-tag {
+                background: #667eea !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 3px 8px;
+                font-size: 0.75em;
+            }
+            
+            .certifications li {
+                background: #e3f2fd !important;
+                border-left: 3px solid #667eea !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                padding: 6px 10px;
+                margin-bottom: 6px;
+            }
+            
+            .achievements li {
+                margin-bottom: 6px;
+                font-size: 0.95em;
+            }
+            
+            .job-title {
+                font-size: 1.1em;
+            }
+            
+            .project-title {
+                font-size: 1em;
+            }
+            
+            /* Ensure colors print correctly */
+            .header::before {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            /* Force page breaks where needed */
+            .experience-item:nth-child(3) {
+                page-break-before: auto;
+            }
+            
+            /* Prevent orphaned headings */
+            h2, h3 {
+                page-break-after: avoid;
+            }
+            
+            /* Ensure proper margins for printing */
+            @page {
+                margin: 0.75in;
+                size: letter;
+            }
+        }
+    </style>
 </head>
-
 <body>
-	<main>
-		<article id="mainLeft">
-			<section>
-				<img src="img/20220821_170129.jpg" alt="" class="center">
-			</section>
-			<section>
-				<h2>CONTACT</h2>
-				<p>
-					<i class="fa fa-envelope" aria-hidden="true"></i>
-					<a href="mailto:lamuelcabaco@gmail.com">lamuelcabaco@gmail.com</a>
-				</p>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name">Lamuel Cabaco Van Der Merwe</h1>
+                <p class="title">Software Engineer & Data Specialist</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 
+                            2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 
+                            4-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span>lamuelcabaco@email.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
+                            <path d="M6.62 10.79a15.093 15.093 0 006.59 
+                            6.59l2.2-2.2c.27-.27.67-.36 
+                            1.02-.24 1.12.37 2.33.57 
+                            3.57.57.55 0 1 .45 1 
+                            1V20c0 .55-.45 1-1 
+                            1C10.61 21 3 13.39 
+                            3 4c0-.55.45-1 1-1h3.5c.55 
+                            0 1 .45 1 1 0 1.24.2 2.45.57 
+                            3.57.11.35.03.74-.25 1.02l-2.2 
+                            2.2z"/>
+                        </svg>
+                        <span>+27 78 795 8823</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
+                            <path d="M4.98 3.5C4.98 4.88 3.87 6 
+                            2.5 6S0 4.88 0 3.5 1.12 1 2.5 
+                            1 4.98 2.12 4.98 3.5zM.5 
+                            8h4V24h-4V8zM8.5 
+                            8h3.6v2.3h.1c.5-.9 
+                            1.7-1.8 3.5-1.8 3.7 0 
+                            4.4 2.4 4.4 5.4V24h-4v-8.4c0-2 
+                            0-4.6-2.8-4.6-2.8 0-3.2 
+                            2.2-3.2 4.5V24h-4V8z"/>
+                        </svg>
 
-				<p>
-					<i class="fab fa-github" aria-hidden="true"></i>
-					<a href="https://github.com/Lamuel-Cabaco/">Lamuel Cabaco</a>
-				</p>
+                        <span><a href="https://www.linkedin.com/in/lamuel-cabaco-van-der-merwe-8352b2209/" style="color:white; text-decoration:none;">Lamuel Cabaco Van Der Merwe</a></span>
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 24 24">
+                            <path d="M12 .5C5.37.5 0 5.87 0 
+                            12.5c0 5.3 3.44 9.8 8.2 
+                            11.39.6.11.82-.26.82-.58 
+                            0-.29-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.74.08-.74 
+                            1.2.08 1.84 1.23 1.84 
+                            1.23 1.07 1.83 2.81 1.3 
+                            3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 
+                            0-1.32.47-2.39 1.23-3.23-.12-.3-.54-1.52.12-3.17 
+                            0 0 1.01-.32 3.3 1.23a11.46 11.46 0 016 0c2.3-1.55 
+                            3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 
+                            3.17.77.84 1.23 1.91 1.23 
+                            3.23 0 4.62-2.8 5.65-5.48 
+                            5.95.43.37.81 1.1.81 2.22 
+                            0 1.6-.02 2.88-.02 3.28 
+                            0 .32.22.69.82.58C20.56 22.3 24 
+                            17.8 24 12.5 24 5.87 18.63.5 
+                            12 .5z"/>
+                        </svg>
 
-				<p>
-					<i class="fab fa-linkedin" aria-hidden="true"></i>
-					<a href="https://www.linkedin.com/in/lamuel-cabaco-van-der-merwe-8352b2209/">Lamuel Cabaco Van Der
-						Merwe</a>
-				</p>
+                        <span><a href="https://github.com/Lamuel-Cabaco" style="color:white; text-decoration:none;">Lamuel-Cabaco</a></span>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-				<p>
-					<i class="fab fa-stack-overflow" aria-hidden="true"></i>
-					<a href="https://stackoverflow.com/users/13999863/lamuel-cabaco-v-d-m">Lamuel Cabaco V.D.M</a>
-				</p>
+        <div class="main-content">
+            <aside class="sidebar">
+                <section class="section">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Programming Languages</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">HTML</span>
+                                <span class="skill-tag">CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">C++</span>
+                                <span class="skill-tag">C#</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Frameworks & Libraries</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Svelte</span>
+                                <span class="skill-tag">Spring Boot</span>
+                                <span class="skill-tag">Pandas</span>
+                                <span class="skill-tag">Openpyxl</span>
+                                <span class="skill-tag">Matplotlib/Seaborn</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Tools & Technologies</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Linux</span>
+                                <span class="skill-tag">Podman/Docker</span>
+                                <span class="skill-tag">PowerBI/Apache Superset</span>
+                                <span class="skill-tag">Git/GitHub</span>
+                                <span class="skill-tag">Virtualization (Type 1 & 2)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-category">
+                            <h4>Databases</h4>
+                            <div class="skill-tags">
+                                <span class="skill-tag">PostgreSQL</span>
+                                <span class="skill-tag">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-				<p>
-					<i class="fas fa-phone"></i> 078-795-8823
-				</p>
-			</section>
-			<section>
-				<h2>LANGUAGES</h2>
-				<sub>
-					<p id="subParagraph">English</p>
-					<div></div>
-				</sub>
-			</section>
-			<section>
-				<h2>TOOLS EXPERIENCE</h2>
+                <section class="section">
+                    <h2 class="section-title">Areas of Interest</h2>
+                    <ul class="certifications">
+                        <li>Data Enthusiast - Engineering and Science</li>
+                        <li>Game Development - Godot Engine</li>
+                        <li>Real-time physics simulation and rendering</li>
+                        <li>Low-level systems development</li>
+                    </ul>
+                </section>
 
+                <section class="section">
+                    <h2 class="section-title">Languages</h2>
+                    <div class="contact-details">
+                        <p><strong>English</strong> - Native</p>
+                    </div>
+                </section>
+            </aside>
 
-				<!-- skills AKA "buzzwords" -->
-				<sub>
-					<p id="subParagraph">Git/GitHub</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-						<span class="dotEmpty"></span>
-					</div>
+            <main class="content">
+                <section class="section">
+                    <h2 class="section-title">Professional Summary</h2>
+                    <p>Full-stack and data engineer with a strong foundation in scalable ETL pipeline development for high-volume datasets. Brings additional expertise
+                         in low-level systems programming using C++ for real-time simulation, combining scalability with performance optimization in diverse domains.</p>
+                </section>
 
-					<p id="subParagraph">VS Code</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-					</div>
+                <section class="section">
+                    <h2 class="section-title">Professional Experience</h2>
+                    
+                    <div class="experience-item">
+                        <h3 class="job-title">Data Analyst/Engineer</h3>
+                        <p class="company">Datafy SA</p>
+                        <p class="date-location">Aug 2024 - Present • George, Western Cape</p>
+                        <ul class="achievements">
+                            <li>Developed Python transformation scripts to automate manual data processing, improving data quality, consistency, and workflow efficiency.</li>
+                            <li>Designed, implemented, and hosted a robust internal technology stack to improve team efficiency and scalability. (Details under key projects section)</li>
+                            <li>Mentored and trained new junior team members, enhancing overall team capability and knowledge sharing.</li>
+                            <li>Developed a web-based report generation tool using Svelte, Spring Boot, Flask, and PostgreSQL, cutting report time by <b><u>90%</u></b> (from between 45m - 1h 15m to under 5m) 
+                                and modernizing legacy processes. (Currently in production)</li>
+                            <li>Developed an API integration system to connect with the client's source system, enabling automated, scheduled data extraction and reducing manual
+                                 data collection time by over <b><u>80%</u></b>.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="experience-item">
+                        <h3 class="job-title">Junior Systems Analyst</h3>
+                        <p class="company">KPMG</p>
+                        <p class="date-location">Jan 2023 - June 2024 • Johannesburg, Gauteng</p>
+                        <ul class="achievements">
+                            <li>Spearheaded development of a proof-of-concept metaverse retail twin with a fully functional backend, enabling virtual retail stores to
+                                 reflect real-time stock levels and user preferences.</li>
+                            <li>Developed an Excel plugin in C# that streamlined audit documentation, reducing multi-step processes to a single click and significantly improving
+                                 team efficiency.</li>
+                            <li>Served as a core member of the data analytics team for internal audit, analyzing large datasets, extracting insights, and enhancing risk
+                                 assessment and audit processes.</li>
+                            <li>Contributed to external audit engagements for major clients, leveraging data analytics to identify trends, anomalies, and improve reporting
+                                 accuracy.</li>
+                        </ul>
+                    </div>
+                </section>
 
-					<p id="subParagraph">Power BI</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-					</div>
+                <section class="section">
+                    <h2 class="section-title">Key Projects</h2>
+                    
+                    <div class="project-item">
+                        <h3 class="project-title">WaterWheel System</h3>
+                        <p class="tech-stack">Svelte, Flask, Spring Boot, PostgreSQL, Apache Superset, Podman</p>
+                        <p>Designed and implemented a full tech stack comprising a PostgreSQL database for data storage, a Spring Boot orchestration API, a Flask API for ETL 
+                            and report generation, an Apache Superset-based visualization layer, and a Svelte front-end dashboard, enabling seamless end-to-end data processing, analysis, 
+                            and reporting.</p>
+                    </div>
+                    
+                    <div class="project-item">
+                        <h3 class="project-title">Local Cluster Engine</h3>
+                        <p class="tech-stack">C, C++, CMake, Linux</p>
+                        <p>Developing a real-time rendering engine from scratch using C++ and modern OpenGL, leveraging GLFW for window management, GLAD for OpenGL loading, 
+                            and ImGui for in-engine debugging tools and UI. Currently focusing on building an efficient rendering pipeline and core engine architecture, with 
+                            planned extensions for advanced features such as physics simulation and real-time scene management.</p>
+                    </div>
+                </section>
 
-					<p id="subParagraph">Office 365</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">SuperSet</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">Spring Boot</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">Podman/Docker</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">Virtualization(Type1 & 2)</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">Linux</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-				</sub>
-			</section>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<section>
-				<h2>PROGRAMMING LANGUAGES</h2>
-				<!-- skills AKA "buzzwords" -->
-				<sub>
-					<p id="subParagraph">HTML</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">CSS</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">PHP</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-						<span class="dotEmpty"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">JavaScript</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">Java</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">C/C++</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">C#</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-					<p id="subParagraph">Python</p>
-					<div id="subRight">
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotFilled"></span>
-						<span class="dotEmpty"></span>
-					</div>
-
-				</sub>
-			</section>
-			<section>
-				<h2>PERSONAL ATTRIBUTES</h2>
-				<sub class="single-column">
-					<p id="subParagraph">Ethical</p>
-					<p id="subParagraph">Critical Thinking</p>
-					<p id="subParagraph">Problem Solving</p>
-					<p id="subParagraph">Team Work</p>
-					<p id="subParagraph">Adaptable</p>
-					<p id="subParagraph">Innovative</p>
-				</sub>
-			</section>
-		</article>
-		<article id="mainRight">
-			<section>
-				<header id="header">
-					<!-- resume header with name and title -->
-					<h1><b>LAMUEL</b> VAN-DER MERWE</h1>
-					<hr>
-					<h2><b>Software Engineer</b></h1>
-						<hr>
-				</header>
-			</section>
-			<section>
-				<h2>ABOUT</h2>
-				<!-- about me -->
-				<p>
-					I am an energetic Software Engineer dedicated to continuous improvement, leveraging my critical thinking
-					abilities to approach problems from multiple angles and deliver effective
-					solutions. My goal is to continuously expand my expertise in IT and related technologies.
-					Throughout my career, I have had the opportunity to work with diverse
-					groups of people, which has helped me develop both my leadership capabilities and my ability to
-					collaborate effectively as a team member.
-				</p>
-
-				<br>
-
-				<p>
-					Through my professional experience, I have acquired both the technical expertise and the analytical
-					mindset necessary to deliver meaningful result.
-					My proactive nature, combined with my drive and self-motivation, allows me to
-					tackle complex challenges and deliver high-quality results. I strongly align
-					with values of accuracy, integrity, and continuous learning. Should you find me a suitable fit for
-					this position, I would greatly appreciate the opportunity for an interview.
-				</p>
-			</section>
-			<section>
-				<h2>EDUCATION</h2>
-				<!-- education -->
-				<h3><b>Matric</b></h3>
-				<p>
-					Jeppe High School For boys (2019)
-				</p>
-
-				<h3><b>BSc Software Engineering</b></h3>
-				<p>
-					Pearson Institute/ Eduvos (2020 - 2023)
-				</p>
-				<p><i class="fas fa-caret-right"></i>First Year Distinctions - 10</p>
-				<p><i class="fas fa-caret-right"></i>Second Year Distinctions - 8</p>
-				<p><i class="fas fa-caret-right"></i>Third Year Distinctions - 3</p>
-			</section>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<section>
-				<h2>WORK EXPERIENCE</h2>
-				<!-- work experience -->
-				<h3>Junior Analyst</h3>
-				<p>
-					KPMG - South Africa (Jan 2023 - May 2024)
-				</p>
-				<p>At KPMG, I handled projects in Internal Audit, External Audit, and Data Analytics. I used analytics
-					to examine large datasets extracting, cleansing, and visualizing
-					data to spot trends, anomalies, and enhance audit services while also evaluating risk management and
-					internal controls.</p>
-				<p><b><u>Key Clients</u></b></p>
-				<p><i class="fas fa-caret-right"></i>King Price insurance</p>
-				<p><i class="fas fa-caret-right"></i>Standard Bank</p>
-				<p><i class="fas fa-caret-right"></i>BarloWorld</p>
-				<p><i class="fas fa-caret-right"></i>Webber Wentzel</p>
-				<p><i class="fas fa-caret-right"></i>NTT</p>
-				<p><i class="fas fa-caret-right"></i>SafriPol</p>
-
-				<br>
-
-				<h3>Data Analyst</h3>
-				<p>
-					Datafy - South Africa (August 2024 - Present)
-				</p>
-				<p>
-					During my time at Datafy, I worked as a data analyst in the FMCG industry. Using clients' sales
-					source data, I create reports for trade teams, highlighting issues for
-					them to resolve in-store within a specific time frame.
-				</p>
-				<p><b><u>Key Clients</u></b></p>
-				<p><i class="fas fa-caret-right"></i>Rhodes Food Group Products - In:
-					<br>&emsp; <i class="fa-solid fa-caret-up"></i> PNP Stores
-					<br>&emsp; <i class="fa-solid fa-caret-up"></i> ShopRite - Checkers Stores
-					<br>&emsp; <i class="fa-solid fa-caret-up"></i> Makro Stores
-				</p>
-				<p><i class="fas fa-caret-right"></i>Spar Private Label Products</p>
-			</section>
-		</article>
-	</main>
-	<hr>
-	<h2>KEY PROJECTS</h2>
-	<!-- Projects -->
-
-<h3>
-	<b>Datafy Tech Stack (WaterWheel)
-	</b>
-</h3>
-<p>Currently, I am leading the end-to-end design and development of a robust technology stack focused on reducing operational bottlenecks, streamlining workflows, 
-	and replacing an outdated legacy system. As the sole developer on this project, I have independently architected, solutioned, and prototyped the entire system from the ground up.
-</p>
-<p>The platform not only significantly accelerates key processes—executing tasks in a fraction of the time compared to the legacy system—but it is also intentionally designed 
-	to be scalable and modular. This ensures it can easily accommodate future enhancements, new data sources, and evolving business needs.
-</p>
-<p>The system's architecture includes:</p>
-<ul>
-	<li><b>PostgreSQL</b> - for reliable, scalable data storage and efficient query performance</li>
-	<li><b>Apache Superset</b> - providing dynamic dashboards and data visualization for faster decision-making</li>
-	<li><b>Java Spring Boot</b> - serving as the backend service layer to manage business logic and APIs</li>
-	<li><b>Python ETL API</b> - automating data extraction, transformation, and loading processes with high efficiency</li>
-	<li><b>Svelte Frontend</b> - delivering a fast, intuitive, and responsive user interface</li>
-</ul>
-<p>
-	This system reduces manual workload, enhances data integrity, and provides a strong foundation for future growth through its scalable and extensible design.
-</p>
+                <section class="section">
+                    <h2 class="section-title">Education</h2>           
+                    <div class="education-item">
+                        <h3 class="job-title">Bachelor of Science in Software Engineering</h3>
+                        <p class="company">Pearson Institute/Eduvos</p>
+                        <p class="date-location">2020 - 2022 • Johannesburg, Gauteng</p>
+                        <p>Graduated with 21 distinctions, demonstrating strong academic performance and mastery of core software engineering principles.</p>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
 </body>
-
 </html>
